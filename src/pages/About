@@ -1,0 +1,52 @@
+import { Button } from "@/components/ui/button";
+import { useNavigate } from "react-router-dom";
+
+const About = () => {
+  const navigate = useNavigate();
+  
+  return (
+    <div className="min-h-screen background-image flex flex-col items-center justify-center">
+      <div className="w-full max-w-2xl px-4 py-8 bg-white/80 backdrop-blur-sm rounded-lg animate-fade-in">
+        <div className="flex justify-between items-center mb-8">
+          <Button 
+            variant="ghost" 
+            className="text-black hover:bg-black/10"
+            onClick={() => navigate("/")}
+          >
+            ← Back
+          </Button>
+          <h1 className="text-4xl font-cursive text-black">About</h1>
+          <div className="w-[60px]"></div> {/* Spacer for alignment */}
+        </div>
+        
+        <div className="prose mx-auto">
+          <p className="mb-4">
+            Welcome to "overthinking out loud" – a space where thoughts, ideas, and reflections 
+            find their voice. This blog is a personal journey through the labyrinth of overthinking, 
+            where complex thoughts are given the freedom to breathe and exist.
+          </p>
+          
+          <p className="mb-4">
+            Here, I explore the nuanced layers of everyday experiences, philosophical ponderings, 
+            and the beauty found in questioning. Just as Claude Monet captured the ephemeral 
+            quality of light and atmosphere in his paintings, I aim to capture the fleeting 
+            nature of thoughts – making the invisible visible.
+          </p>
+          
+          <p className="mb-4">
+            This blog serves as both a canvas and a mirror – reflecting internal dialogues while 
+            creating space for new perspectives. It's an invitation to pause, consider, and perhaps 
+            recognize fragments of your own thinking patterns within these words.
+          </p>
+          
+          <p>
+            Thank you for joining me in this space of contemplation and expression. Sometimes, 
+            the most interesting conversations happen when we simply think out loud.
+          </p>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default About;
