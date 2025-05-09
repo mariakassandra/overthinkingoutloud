@@ -1,0 +1,706 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Overthinking Out Loud | Turning overthinking into an art form</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --brand-yellow: #ffd426;
+            --accent-yellow: #fff7d6;
+            --dark-gray: #333333;
+            --light-gray: #f5f5f5;
+            --white: #ffffff;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Lato', sans-serif;
+            line-height: 1.6;
+            color: var(--dark-gray);
+            background-color: var(--white);
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Header */
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+            border-bottom: 1px solid var(--accent-yellow);
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo-icon {
+            width: 40px;
+            height: 40px;
+            background-color: var(--brand-yellow);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 15px;
+        }
+        
+        .logo-text {
+            font-weight: 700;
+            font-size: 1.2rem;
+        }
+        
+        /* Navigation */
+        .nav-menu {
+            display: flex;
+            list-style: none;
+        }
+        
+        .nav-item {
+            margin-left: 25px;
+            position: relative;
+        }
+        
+        .nav-link {
+            color: var(--dark-gray);
+            text-decoration: none;
+            font-size: 0.95rem;
+            transition: color 0.3s;
+        }
+        
+        .nav-link:hover {
+            color: var(--brand-yellow);
+        }
+        
+        .nav-link:hover::after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 2px;
+            background-color: var(--brand-yellow);
+            bottom: -5px;
+            left: 0;
+        }
+        
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+        
+        /* Hero Section */
+        .hero {
+            padding: 100px 0;
+            text-align: center;
+            background-color: var(--white);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: var(--accent-yellow);
+            clip-path: circle(70% at 85% 15%);
+            z-index: -1;
+        }
+        
+        .hero-title {
+            font-family: 'Dancing Script', cursive;
+            font-size: 4.5rem;
+            margin-bottom: 20px;
+            color: var(--dark-gray);
+        }
+        
+        .hero-tagline {
+            font-size: 1.2rem;
+            font-weight: 300;
+            max-width: 600px;
+            margin: 0 auto 40px;
+        }
+        
+        .cta-button {
+            display: inline-block;
+            padding: 12px 28px;
+            background-color: var(--brand-yellow);
+            color: var(--dark-gray);
+            text-decoration: none;
+            border-radius: 4px;
+            font-weight: 700;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        /* Featured Posts */
+        .featured-posts {
+            padding: 80px 0;
+        }
+        
+        .section-title {
+            text-align: center;
+            font-size: 2rem;
+            margin-bottom: 50px;
+            position: relative;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 3px;
+            background-color: var(--brand-yellow);
+        }
+        
+        .posts-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .post-card {
+            background-color: var(--white);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .post-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+        
+        .post-image {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+        
+        .post-content {
+            padding: 20px;
+        }
+        
+        .post-category {
+            display: inline-block;
+            font-size: 0.8rem;
+            color: var(--dark-gray);
+            background-color: var(--accent-yellow);
+            padding: 5px 10px;
+            border-radius: 4px;
+            margin-bottom: 10px;
+        }
+        
+        .post-title {
+            font-size: 1.3rem;
+            margin-bottom: 10px;
+        }
+        
+        .post-excerpt {
+            font-size: 0.95rem;
+            color: #666;
+            margin-bottom: 15px;
+        }
+        
+        .read-more {
+            display: inline-block;
+            color: var(--dark-gray);
+            font-weight: 700;
+            text-decoration: none;
+            position: relative;
+        }
+        
+        .read-more::after {
+            content: '';
+            position: absolute;
+            bottom: -3px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background-color: var(--brand-yellow);
+            transform: scaleX(0);
+            transform-origin: right;
+            transition: transform 0.3s;
+        }
+        
+        .read-more:hover::after {
+            transform: scaleX(1);
+            transform-origin: left;
+        }
+        
+        /* Categories Section */
+        .categories {
+            padding: 80px 0;
+            background-color: var(--light-gray);
+        }
+        
+        .categories-container {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+        
+        .category-card {
+            flex: 1;
+            min-width: 200px;
+            text-align: center;
+            padding: 30px 20px;
+            background-color: var(--white);
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s;
+        }
+        
+        .category-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .category-icon {
+            font-size: 2rem;
+            color: var(--brand-yellow);
+            margin-bottom: 15px;
+        }
+        
+        .category-title {
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+        }
+        
+        .category-description {
+            font-size: 0.9rem;
+            color: #666;
+        }
+        
+        /* Newsletter */
+        .newsletter {
+            padding: 80px 0;
+            text-align: center;
+        }
+        
+        .newsletter-form {
+            max-width: 500px;
+            margin: 0 auto;
+            display: flex;
+        }
+        
+        .newsletter-input {
+            flex: 1;
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 4px 0 0 4px;
+            font-family: 'Lato', sans-serif;
+        }
+        
+        .newsletter-button {
+            padding: 15px 25px;
+            background-color: var(--brand-yellow);
+            color: var(--dark-gray);
+            border: none;
+            border-radius: 0 4px 4px 0;
+            cursor: pointer;
+            font-weight: 700;
+        }
+        
+        /* Footer */
+        .footer {
+            background-color: var(--dark-gray);
+            color: var(--white);
+            padding: 60px 0 30px;
+        }
+        
+        .footer-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+        }
+        
+        .footer-logo {
+            font-family: 'Dancing Script', cursive;
+            font-size: 1.8rem;
+            margin-bottom: 15px;
+        }
+        
+        .footer-tagline {
+            font-size: 0.9rem;
+            color: #aaa;
+            margin-bottom: 20px;
+        }
+        
+        .footer-title {
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+            position: relative;
+        }
+        
+        .footer-title::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 0;
+            width: 40px;
+            height: 2px;
+            background-color: var(--brand-yellow);
+        }
+        
+        .footer-links {
+            list-style: none;
+        }
+        
+        .footer-link {
+            margin-bottom: 10px;
+        }
+        
+        .footer-link a {
+            color: #aaa;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-link a:hover {
+            color: var(--brand-yellow);
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .social-link {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: #444;
+            border-radius: 50%;
+            color: var(--white);
+            text-decoration: none;
+            transition: background-color 0.3s;
+        }
+        
+        .social-link:hover {
+            background-color: var(--brand-yellow);
+            color: var(--dark-gray);
+        }
+        
+        .copyright {
+            text-align: center;
+            margin-top: 50px;
+            padding-top: 20px;
+            border-top: 1px solid #444;
+            font-size: 0.9rem;
+            color: #aaa;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: 3.5rem;
+            }
+            
+            .nav-menu {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                width: 250px;
+                height: 100vh;
+                background-color: var(--white);
+                flex-direction: column;
+                justify-content: flex-start;
+                padding: 80px 0 0 0;
+                box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
+                transition: right 0.3s;
+                z-index: 100;
+            }
+            
+            .nav-menu.active {
+                right: 0;
+            }
+            
+            .nav-item {
+                margin: 0;
+                padding: 15px 25px;
+                width: 100%;
+                border-bottom: 1px solid #eee;
+            }
+            
+            .mobile-menu-btn {
+                display: block;
+                z-index: 101;
+            }
+            
+            .close-menu {
+                position: absolute;
+                top: 20px;
+                right: 20px;
+                font-size: 1.5rem;
+                background: none;
+                border: none;
+                cursor: pointer;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .hero-title {
+                font-size: 2.8rem;
+            }
+            
+            .newsletter-form {
+                flex-direction: column;
+            }
+            
+            .newsletter-input {
+                border-radius: 4px;
+                margin-bottom: 10px;
+            }
+            
+            .newsletter-button {
+                border-radius: 4px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header container">
+        <div class="logo">
+            <div class="logo-icon">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M12 2L2 12l3 3 7-7 8 8-7 7 3 3 10-10-4-4-1 1-6-6 1-1-4-4z"/>
+                </svg>
+            </div>
+            <div class="logo-text">OVERTHINKING OUT LOUD</div>
+        </div>
+        
+        <button class="mobile-menu-btn">☰</button>
+        
+        <nav>
+            <ul class="nav-menu">
+                <button class="close-menu">✕</button>
+                <li class="nav-item"><a href="#" class="nav-link">Home</a></li>
+                <li class="nav-item"><a href="#" class="nav-link">Flirtations & Frustrations</a></li>
+                <li class="nav-item"><a href="#" class="nav-link">Book Corner</a></li>
+                <li class="nav-item"><a href="#" class="nav-link">Poetry</a></li>
+                <li class="nav-item"><a href="#" class="nav-link">Everyday Observations</a></li>
+                <li class="nav-item"><a href="#" class="nav-link">Midnight Thoughts</a></li>
+                <li class="nav-item"><a href="#" class="nav-link">About</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <h1 class="hero-title">overthinking out loud</h1>
+            <p class="hero-tagline">Turning overthinking into an art form</p>
+            <a href="#" class="cta-button">Start Reading</a>
+        </div>
+    </section>
+
+    <!-- Featured Posts Section -->
+    <section class="featured-posts">
+        <div class="container">
+            <h2 class="section-title">Latest Overthinking</h2>
+            <div class="posts-grid">
+                <!-- Post 1 -->
+                <div class="post-card">
+                    <img src="https://via.placeholder.com/600x400" alt="Post image" class="post-image">
+                    <div class="post-content">
+                        <span class="post-category">Flirtations & Frustrations</span>
+                        <h3 class="post-title">Thought it was a date. She brought a board game and said "no homo."</h3>
+                        <p class="post-excerpt">We met through mutual friends at a queer trivia night, where I boldly misidentified Jodie Foster as "just a really talented straight woman."</p>
+                        <a href="#" class="read-more">Read more</a>
+                    </div>
+                </div>
+                
+                <!-- Post 2 -->
+                <div class="post-card">
+                    <img src="https://via.placeholder.com/600x400" alt="Post image" class="post-image">
+                    <div class="post-content">
+                        <span class="post-category">Book Corner</span>
+                        <h3 class="post-title">The Secret History of My Overthinking</h3>
+                        <p class="post-excerpt">Donna Tartt's masterpiece reminds me that even beautiful people have intrusive thoughts—they just have better bone structure while having them.</p>
+                        <a href="#" class="read-more">Read more</a>
+                    </div>
+                </div>
+                
+                <!-- Post 3 -->
+                <div class="post-card">
+                    <img src="https://via.placeholder.com/600x400" alt="Post image" class="post-image">
+                    <div class="post-content">
+                        <span class="post-category">Midnight Thoughts</span>
+                        <h3 class="post-title">3 AM and Wondering if I'm the Villain in Someone Else's Story</h3>
+                        <p class="post-excerpt">The ceiling fan spins above me like the wheel of fortune, except all the prizes are existential crises.</p>
+                        <a href="#" class="read-more">Read more</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Categories Section -->
+    <section class="categories">
+        <div class="container">
+            <h2 class="section-title">Explore Categories</h2>
+            <div class="categories-container">
+                <!-- Category 1 -->
+                <div class="category-card">
+                    <div class="category-icon">❤️</div>
+                    <h3 class="category-title">Flirtations & Frustrations</h3>
+                    <p class="category-description">Dating stories that will make you feel better about your own love life.</p>
+                </div>
+                
+                <!-- Category 2 -->
+                <div class="category-card">
+                    <div class="category-icon">📚</div>
+                    <h3 class="category-title">Book Corner</h3>
+                    <p class="category-description">Reviews that go beyond "I liked it" to "this book rearranged my molecules."</p>
+                </div>
+                
+                <!-- Category 3 -->
+                <div class="category-card">
+                    <div class="category-icon">🌙</div>
+                    <h3 class="category-title">Midnight Thoughts</h3>
+                    <p class="category-description">The existential crises that arrive precisely at 2:37 AM.</p>
+                </div>
+                
+                <!-- Category 4 -->
+                <div class="category-card">
+                    <div class="category-icon">✒️</div>
+                    <h3 class="category-title">Poetry</h3>
+                    <p class="category-description">When overthinking gets distilled into stanzas.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Newsletter Section -->
+    <section class="newsletter">
+        <div class="container">
+            <h2 class="section-title">Subscribe to My Overthinking</h2>
+            <p class="hero-tagline">Get new posts delivered directly to your inbox. No spam, just overthought content.</p>
+            <form class="newsletter-form">
+                <input type="email" placeholder="Your email address" class="newsletter-input">
+                <button type="submit" class="newsletter-button">Subscribe</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-container">
+                <!-- About Column -->
+                <div>
+                    <h2 class="footer-logo">overthinking out loud</h2>
+                    <p class="footer-tagline">Turning overthinking into an art form</p>
+                    <p>A blog about life's awkward moments, literary reflections, and the art of thinking too much about everything.</p>
+                </div>
+                
+                <!-- Categories Column -->
+                <div>
+                    <h3 class="footer-title">Categories</h3>
+                    <ul class="footer-links">
+                        <li class="footer-link"><a href="#">Flirtations & Frustrations</a></li>
+                        <li class="footer-link"><a href="#">Book Corner</a></li>
+                        <li class="footer-link"><a href="#">Poetry</a></li>
+                        <li class="footer-link"><a href="#">Everyday Observations</a></li>
+                        <li class="footer-link"><a href="#">Midnight Thoughts</a></li>
+                    </ul>
+                </div>
+                
+                <!-- Quick Links Column -->
+                <div>
+                    <h3 class="footer-title">Quick Links</h3>
+                    <ul class="footer-links">
+                        <li class="footer-link"><a href="#">About</a></li>
+                        <li class="footer-link"><a href="#">Contact</a></li>
+                        <li class="footer-link"><a href="#">Privacy Policy</a></li>
+                    </ul>
+                </div>
+                
+                <!-- Connect Column -->
+                <div>
+                    <h3 class="footer-title">Connect</h3>
+                    <p>Follow me on social media for more overthinking moments.</p>
+                    <div class="social-links">
+                        <a href="#" class="social-link">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path>
+                            </svg>
+                        </a>
+                        <a href="#" class="social-link">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+                                <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                                <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+                            </svg>
+                        </a>
+                        <a href="#" class="social-link">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                &copy; 2025 Overthinking Out Loud. All rights reserved.
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile Menu Toggle
+        const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+        const closeMenuBtn = document.querySelector('.close-menu');
+        const navMenu = document.querySelector('.nav-menu');
+        
+        mobileMenuBtn.addEventListener('click', () => {
+            navMenu.classList.add('active');
+        });
+        
+        closeMenuBtn.addEventListener('click', () => {
+            navMenu.classList.remove('active');
+        });
+        
+        // Close menu when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!navMenu.contains(e.target) && !mobileMenuBtn.contains(e.target)) {
+                navMenu.classList.remove('active');
+            }
+        });
+    </script>
+</body>
+</html>
